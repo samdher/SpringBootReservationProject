@@ -16,33 +16,32 @@ public record ReservaService(
         MesaRepository mesaRepository
 ) {
     public void createReserva(ReservaDTO reservaDTO){
-
-
         try {
             Mesa mesa = mesaRepository.findById(reservaDTO.idMesa())
                     .orElseThrow(
                             () -> new DemoSecurityException(EMessage.MESA_NOT_FOUND)
                     );
-            if (mesa.getUbicacion()!=""){
-                if (mesa.isReservada()) //Disponible
-                {
-                    Reserva reserva = Reserva.builder()
-                            .idMesa(reservaDTO.idMesa())
-                            .cliente(reservaDTO.cliente())
-                            .fechaReserva(reservaDTO.fechaReserva())
-                            .duracion(reservaDTO.duracion())
-                            .estado(reservaDTO.estado())
-                            .build();
 
-                    System.out.println("Guardando reserva "+reserva);
+            if (!mesa.isReservada()) //Disponible
+            {
+                Reserva reserva = Reserva.builder()
+                        .idMesa(reservaDTO.idMesa())
+                        .cliente(reservaDTO.cliente())
+                        .fechaReserva(reservaDTO.fechaReserva())
+                        .duracion(reservaDTO.duracion())
+                        .estado(reservaDTO.estado())
+                        .build();
 
-                    // llamar a la interface del repository save
-                    reservaRepository.save(reserva);
+                System.out.println("Guardando reserva "+reserva);
 
-                }
-                else {new DemoSecurityException(EMessage.MESA_NOT_AVAILABLE);}
+                // llamar a la interface del repository save
+                reservaRepository.save(reserva);
+
             }
-
+            else {
+                System.out.println("Mesa no disponible. ");
+                throw new  DemoSecurityException(EMessage.MESA_NOT_AVAILABLE);
+            }
         } catch (DemoSecurityException e) {
             throw new RuntimeException(e);
         }

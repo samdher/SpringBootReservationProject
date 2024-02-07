@@ -18,7 +18,7 @@ public record AuthenticationController(
 ) {
 
   @PostMapping("/register")
-  public ResponseEntity<?> register(@RequestBody UserDto userDto){
+  public ResponseEntity<?> register(@RequestBody UserDto userDto) throws DemoSecurityException {
     String token = authenticationService.register(userDto);
     return new ResponseEntity<>(token, HttpStatus.CREATED);
   }

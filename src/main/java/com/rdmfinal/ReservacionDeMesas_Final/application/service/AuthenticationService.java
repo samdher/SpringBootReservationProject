@@ -20,17 +20,24 @@ public record AuthenticationService(
   AuthenticationManager authenticationManager
 ) {
 
-  public String register(UserDto userDto) {
-    User user = User.builder()
-      .firstName(userDto.firstName())
-      .lastName(userDto.lastName())
-      .email(userDto.email())
-      .enable(true)
-      .role(ERole.USER)
-      .password(passwordEncoder().encode(userDto.password()))
-      .build();
-    userRepository.save(user);
-    return jwtService.generateToken(user);
+  public String register(UserDto userDto) throws DemoSecurityException {
+      User user = User.builder()
+        .firstName(userDto.firstName())
+        .lastName(userDto.lastName())
+        .email(userDto.email())
+        .enable(true)
+        .role(ERole.USER)
+        .password(passwordEncoder().encode(userDto.password()))
+        .build();
+
+    try {
+      userRepository.save(user);
+      return jwtService.generateToken(user);
+    } catch (RuntimeException e) {
+      throw new DemoSecurityException(EMessage.USER_NOT_CREATED);
+    }
+
+
   }
 
   public String login(AuthenticationDto authenticationDto) throws DemoSecurityException {
