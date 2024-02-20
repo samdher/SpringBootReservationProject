@@ -5,14 +5,15 @@ import com.rdmfinal.TablesReservation_Final.application.lasting.EMessage;
 import com.rdmfinal.TablesReservation_Final.domain.dto.ReservationDTO;
 import com.rdmfinal.TablesReservation_Final.domain.entity.PostGreSQL.Reservation;
 import com.rdmfinal.TablesReservation_Final.domain.entity.PostGreSQL.TableBench;
-import com.rdmfinal.TablesReservation_Final.domain.repository.PostGreSQL.ReservationRepository;
+import com.rdmfinal.TablesReservation_Final.domain.repository.MongoDB.ReservationRepositoryMongoDB;
+import com.rdmfinal.TablesReservation_Final.domain.repository.MongoDB.TableBenchRepositoryMongoDB;
 import com.rdmfinal.TablesReservation_Final.domain.repository.PostGreSQL.TableBenchRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public record ReservationService(
-        ReservationRepository reservationRepository,
-        TableBenchRepository tableBenchRepository
+public record ReservationServiceMongoDB(
+        ReservationRepositoryMongoDB reservationRepository,
+        TableBenchRepositoryMongoDB tableBenchRepository
 ) {
     public void createReserva(ReservationDTO reservationDTO){
         try {

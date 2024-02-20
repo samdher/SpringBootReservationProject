@@ -1,7 +1,7 @@
 package com.rdmfinal.TablesReservation_Final.application.controller;
 
 import com.rdmfinal.TablesReservation_Final.application.exception.DemoSecurityException;
-import com.rdmfinal.TablesReservation_Final.application.service.TableBenchService;
+import com.rdmfinal.TablesReservation_Final.application.service.PostGreSQL.TableBenchService;
 import com.rdmfinal.TablesReservation_Final.domain.dto.TableBenchDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

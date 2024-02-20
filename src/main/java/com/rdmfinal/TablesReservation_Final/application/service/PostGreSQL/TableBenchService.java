@@ -1,4 +1,4 @@
-package com.rdmfinal.TablesReservation_Final.application.service;
+package com.rdmfinal.TablesReservation_Final.application.service.PostGreSQL;
 
 import com.rdmfinal.TablesReservation_Final.application.exception.DemoSecurityException;
 import com.rdmfinal.TablesReservation_Final.application.lasting.EMessage;

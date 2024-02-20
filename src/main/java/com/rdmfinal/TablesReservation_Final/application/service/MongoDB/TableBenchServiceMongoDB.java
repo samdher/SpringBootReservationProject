@@ -4,11 +4,11 @@ import com.rdmfinal.TablesReservation_Final.application.exception.DemoSecurityEx
 import com.rdmfinal.TablesReservation_Final.application.lasting.EMessage;
 import com.rdmfinal.TablesReservation_Final.domain.dto.TableBenchDTO;
 import com.rdmfinal.TablesReservation_Final.domain.entity.PostGreSQL.TableBench;
-import com.rdmfinal.TablesReservation_Final.domain.repository.PostGreSQL.TableBenchRepository;
+import com.rdmfinal.TablesReservation_Final.domain.repository.MongoDB.TableBenchRepositoryMongoDB;
 import org.springframework.stereotype.Service;
 
 @Service
-public record TableBenchService(TableBenchRepository tableBenchRepository) {
+public record TableBenchServiceMongoDB(TableBenchRepositoryMongoDB tableBenchRepository) {
     public void createMesa(TableBenchDTO tableBenchDTO){
         TableBench tableBench = TableBench.builder()
                 .noPersonas(tableBenchDTO.noPersonas())
