@@ -1,10 +1,10 @@
 package com.rdmfinal.TablesReservation_Final.domain.entity.MongoDB;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
@@ -12,13 +12,13 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Document
 @Builder
 @ToString
 public class ReservationMongoDB {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private Long idMesa;
     private String cliente;
     private Date fechaReserva;

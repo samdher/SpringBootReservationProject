@@ -1,11 +1,11 @@
 package com.rdmfinal.TablesReservation_Final.domain.entity.MongoDB;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
 
@@ -15,11 +15,11 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
+@Document
 public class TableBenchMongoDB {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idMesa;
+    private String idMesa;
     private int noPersonas;
     private String ubicacion;
     private boolean reservada;

@@ -4,6 +4,7 @@ import com.rdmfinal.TablesReservation_Final.application.lasting.ERole;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +19,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
+@Document
 @Table(name = "\"user\"", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 public class UserMongoDB implements UserDetails{
 
@@ -31,7 +32,7 @@ public class UserMongoDB implements UserDetails{
     strategy = GenerationType.SEQUENCE,
     generator = "user_id_sequence"
   )
-  private Integer id;
+  private String id;
   private String firstName;
   private String lastName;
   private String email;
