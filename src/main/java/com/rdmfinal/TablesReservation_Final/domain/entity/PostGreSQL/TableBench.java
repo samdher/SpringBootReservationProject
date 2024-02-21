@@ -9,18 +9,24 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Entity
 public class TableBench {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMesa;
-    private int noPersonas;
-    private String ubicacion;
-    private boolean reservada;
+    private int noPesons;
+    private String ubication;
+    private boolean isReserved;
 
+    public TableBench(){
+
+    }
+
+    public TableBench(int noPesons,String ubication,boolean isReserved){
+        this.noPesons = noPesons;
+        this.ubication = ubication;
+        this.isReserved = isReserved;
+    }
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;

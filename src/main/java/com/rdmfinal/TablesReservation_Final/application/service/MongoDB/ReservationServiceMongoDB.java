@@ -2,72 +2,43 @@ package com.rdmfinal.TablesReservation_Final.application.service.MongoDB;
 
 import com.rdmfinal.TablesReservation_Final.application.exception.DemoSecurityException;
 import com.rdmfinal.TablesReservation_Final.application.lasting.EMessage;
+import com.rdmfinal.TablesReservation_Final.application.service.GenericService;
 import com.rdmfinal.TablesReservation_Final.domain.dto.ReservationDTO;
+import com.rdmfinal.TablesReservation_Final.domain.entity.MongoDB.ReservationMongoDB;
+import com.rdmfinal.TablesReservation_Final.domain.entity.MongoDB.TableBenchMongoDB;
 import com.rdmfinal.TablesReservation_Final.domain.entity.PostGreSQL.Reservation;
 import com.rdmfinal.TablesReservation_Final.domain.entity.PostGreSQL.TableBench;
 import com.rdmfinal.TablesReservation_Final.domain.repository.MongoDB.ReservationRepositoryMongoDB;
 import com.rdmfinal.TablesReservation_Final.domain.repository.MongoDB.TableBenchRepositoryMongoDB;
 import com.rdmfinal.TablesReservation_Final.domain.repository.PostGreSQL.TableBenchRepository;
-import org.springframework.stereotype.Service;
 
-@Service
-public record ReservationServiceMongoDB(
-        ReservationRepositoryMongoDB reservationRepository,
-        TableBenchRepositoryMongoDB tableBenchRepository
-) {
-    public void createReserva(ReservationDTO reservationDTO){
-        try {
-            TableBench tableBench = tableBenchRepository.findById(reservationDTO.idMesa())
-                    .orElseThrow(
-                            () -> new DemoSecurityException(EMessage.MESA_NOT_FOUND)
-                    );
+import java.util.List;
+import java.util.Optional;
 
-            if (!tableBench.isReservada()) //Disponible
-            {
-                Reservation reservation = Reservation.builder()
-                        .idMesa(reservationDTO.idMesa())
-                        .cliente(reservationDTO.cliente())
-                        .fechaReserva(reservationDTO.fechaReserva())
-                        .duracion(reservationDTO.duracion())
-                        .estado(reservationDTO.estado())
-                        .build();
+public class ReservationServiceMongoDB implements GenericService <ReservationMongoDB, String>{
+    private final ReservationRepositoryMongoDB reservationRepositoryMongoDB;
 
-                System.out.println("Guardando reservation "+ reservation);
-
-                // llamar a la interface del repository save
-                reservationRepository.save(reservation);
-
-            }
-            else {
-                System.out.println("TableBench no disponible. ");
-                throw new  DemoSecurityException(EMessage.MESA_NOT_AVAILABLE);
-            }
-        } catch (DemoSecurityException e) {
-            throw new RuntimeException(e);
-        }
+    public ReservationServiceMongoDB(ReservationRepositoryMongoDB reservationRepositoryMongo) {
+        this.reservationRepositoryMongoDB = reservationRepositoryMongo;
     }
 
-    public ReservationDTO findReservaById(Long id) throws DemoSecurityException {
-        Reservation reservation = reservationRepository.findById(id)
-                .orElseThrow(
-                        () -> new DemoSecurityException(EMessage.DATA_NOT_FOUND)
-                );
-        return new ReservationDTO(
-                reservation.getId(),
-                reservation.getIdMesa(),
-                reservation.getCliente(),
-                reservation.getFechaReserva(),
-                reservation.getDuracion(),
-                reservation.getEstado()
-        );
+    public ReservationMongoDB save(ReservationMongoDB entity) {
+        return (ReservationMongoDB)this.reservationRepositoryMongoDB.save(entity);
     }
 
-    public void deleteReservaByID(Long id) throws DemoSecurityException {
-        Reservation reservation = reservationRepository.findById(id)
-                .orElseThrow(
-                        () -> new DemoSecurityException(EMessage.DATA_NOT_FOUND)
-                );
-        reservationRepository.deleteById(id);
+    public Optional<ReservationMongoDB> findById(String id) {
+        return this.reservationRepositoryMongoDB.findById(id);
     }
 
+    public List<ReservationMongoDB> findAll() {
+        return this.reservationRepositoryMongoDB.findAll();
+    }
+
+    public void deleteById(String id) {
+        this.reservationRepositoryMongoDB.deleteById(id);
+    }
+
+    public void delete(ReservationMongoDB entity) {
+        this.reservationRepositoryMongoDB.delete(entity);
+    }
 }

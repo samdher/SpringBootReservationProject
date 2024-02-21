@@ -12,17 +12,24 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Document
 public class TableBenchMongoDB {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String idMesa;
-    private int noPersonas;
-    private String ubicacion;
-    private boolean reservada;
+    private String idTableBench;
+    private int noPesons;
+    private String ubication;
+    private boolean isReserved;
+
+    public TableBenchMongoDB(){
+
+    }
+
+    public TableBenchMongoDB(int noPesons, String ubication, boolean isReserved){
+        this.noPesons = noPesons;
+        this.ubication = ubication;
+        this.isReserved = isReserved;
+    }
 
     @Override
     public final boolean equals(Object o) {
@@ -32,7 +39,7 @@ public class TableBenchMongoDB {
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
         TableBenchMongoDB tableBench = (TableBenchMongoDB) o;
-        return getIdMesa() != null && Objects.equals(getIdMesa(), tableBench.getIdMesa());
+        return getIdTableBench() != null && Objects.equals(getIdTableBench(), tableBench.getIdTableBench());
     }
 
     @Override

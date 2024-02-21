@@ -1,30 +1,32 @@
 package com.rdmfinal.TablesReservation_Final.application.controller;
 
 import com.rdmfinal.TablesReservation_Final.application.exception.DemoSecurityException;
+import com.rdmfinal.TablesReservation_Final.application.service.PostGreSQL.ReservationService;
 import com.rdmfinal.TablesReservation_Final.application.service.PostGreSQL.TableBenchService;
 import com.rdmfinal.TablesReservation_Final.domain.dto.TableBenchDTO;
+import com.rdmfinal.TablesReservation_Final.domain.entity.PostGreSQL.Reservation;
+import com.rdmfinal.TablesReservation_Final.domain.entity.PostGreSQL.TableBench;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/v1/tablebench")
-public record TableBenchController(TableBenchService tableBenchService) {
-    @PostMapping
-    public ResponseEntity<?> registerMesa(@RequestBody TableBenchDTO tableBenchDTO){
-        tableBenchService.createMesa(tableBenchDTO);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+public class TableBenchController {
+    private final TableBenchService tableBenchService;
+
+    public TableBenchController(@Autowired TableBenchService tableBenchService) {
+
+        this.tableBenchService = tableBenchService;
     }
 
-    @GetMapping("/{idtablebench}")
-    public ResponseEntity<?> findMesaById(@PathVariable Long idTableBench) throws DemoSecurityException {
-        TableBenchDTO tableBenchDTO = tableBenchService.findMesaById(idTableBench);
-        return new ResponseEntity<>(tableBenchDTO, HttpStatus.FOUND);
+    @RequestMapping({"/{id}"})
+    public ResponseEntity<TableBench> findUserById(@PathVariable Long id) {
+        Optional<TableBench> tableBench = this.tableBenchService.findById(id);
+        return tableBench.isPresent() ? ResponseEntity.ok((TableBench)tableBench.get()) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/{idtablebench}")
-    public ResponseEntity<?> deleteMesaByID(@PathVariable Long idTableBench) throws DemoSecurityException {
-        tableBenchService.deleteMesaByID(idTableBench);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 }
