@@ -2,43 +2,44 @@ package com.rdmfinal.TablesReservation_Final.application.service.PostGreSQL;
 
 import com.rdmfinal.TablesReservation_Final.application.exception.DemoSecurityException;
 import com.rdmfinal.TablesReservation_Final.application.lasting.EMessage;
+import com.rdmfinal.TablesReservation_Final.application.service.GenericService;
 import com.rdmfinal.TablesReservation_Final.domain.dto.TableBenchDTO;
+import com.rdmfinal.TablesReservation_Final.domain.entity.PostGreSQL.Reservation;
 import com.rdmfinal.TablesReservation_Final.domain.entity.PostGreSQL.TableBench;
+import com.rdmfinal.TablesReservation_Final.domain.repository.PostGreSQL.ReservationRepository;
 import com.rdmfinal.TablesReservation_Final.domain.repository.PostGreSQL.TableBenchRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
-public record TableBenchService(TableBenchRepository tableBenchRepository) {
-    public void createMesa(TableBenchDTO tableBenchDTO){
-        TableBench tableBench = TableBench.builder()
-                .noPersonas(tableBenchDTO.noPersonas())
-                .ubicacion(tableBenchDTO.ubicacion())
-                .reservada(tableBenchDTO.reservada())
-                .build();
+public class TableBenchService implements GenericService<TableBench, Long> {
+    private final TableBenchRepository tableBenchRepository;
 
-        System.out.println("Se ha ingresado TableBench correctamente: "+ tableBench);
-        // llamar a la interface del repository save
-        tableBenchRepository.save(tableBench);
+    public TableBenchService(@Autowired TableBenchRepository tableBenchRepository) {
+        this.tableBenchRepository = tableBenchRepository;
     }
 
-    public TableBenchDTO findMesaById(Long idMesa) throws DemoSecurityException {
-        TableBench tableBench = tableBenchRepository.findById(idMesa)
-                .orElseThrow(
-                        () -> new DemoSecurityException(EMessage.DATA_NOT_FOUND)
-                );
-        return new TableBenchDTO(
-                tableBench.getIdMesa(),
-                tableBench.getNoPersonas(),
-                tableBench.getUbicacion(),
-                tableBench.isReservada()
-        );
+    public TableBench save(TableBench entity) {
+        return (TableBench)this.tableBenchRepository.save(entity);
     }
 
-    public void deleteMesaByID(Long idMesa) throws DemoSecurityException {
-        TableBench tableBench = tableBenchRepository.findById(idMesa)
-                .orElseThrow(
-                        () -> new DemoSecurityException(EMessage.DATA_NOT_FOUND)
-                );
-        tableBenchRepository.deleteById(idMesa);
+    public Optional<TableBench> findById(Long id) {
+        return this.tableBenchRepository.findById(id);
     }
+
+    public List<TableBench> findAll() {
+        return this.tableBenchRepository.findAll();
+    }
+
+    public void deleteById(Long id) {
+        this.tableBenchRepository.deleteById(id);
+    }
+
+    public void delete(TableBench entity) {
+        this.tableBenchRepository.delete(entity);
+    }
+
 }
