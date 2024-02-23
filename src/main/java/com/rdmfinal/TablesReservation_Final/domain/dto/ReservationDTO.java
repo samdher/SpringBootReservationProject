@@ -6,8 +6,8 @@ import java.util.Date;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record ReservationDTO(
-    long id,
-    long idTableBench,
+    Long id,
+    Long idTableBench,
     String client,
     Date dateReservation,
     int duration,

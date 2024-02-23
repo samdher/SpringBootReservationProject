@@ -41,7 +41,7 @@ public class TableBenchServiceTest {
         verify(tableBenchRepository).save(any(TableBench.class));
     }
 
-    @Test
+   @Test
     @SneakyThrows
     void testTableBenchFindById() {
         // Given
@@ -58,7 +58,7 @@ public class TableBenchServiceTest {
                 .id(1L)
                 .noPersons(2)
                 .ubication("Jardin")
-                .isReserved(true)
+                .isReserved(false)
                 .build();
 
         // When
@@ -68,6 +68,4 @@ public class TableBenchServiceTest {
         // Then
         assertEquals(tableBenchDTO, resultDto);
     }
-
-
 }
