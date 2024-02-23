@@ -19,10 +19,10 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long idMesa;
-    private String cliente;
-    private Date fechaReserva;
-    private int duracion;
-    private String estado;
+    private Long idTableBench;
+    private String client;
+    private Date dateReservation;
+    private int duration;
+    private String status;
 
 }

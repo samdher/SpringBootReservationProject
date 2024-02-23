@@ -9,24 +9,17 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 public class TableBench {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idMesa;
-    private int noPesons;
+    private Long id;
+    private int noPersons;
     private String ubication;
     private boolean isReserved;
-
-    public TableBench(){
-
-    }
-
-    public TableBench(int noPesons,String ubication,boolean isReserved){
-        this.noPesons = noPesons;
-        this.ubication = ubication;
-        this.isReserved = isReserved;
-    }
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;
@@ -35,7 +28,7 @@ public class TableBench {
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
         TableBench tableBench = (TableBench) o;
-        return getIdMesa() != null && Objects.equals(getIdMesa(), tableBench.getIdMesa());
+        return getId() != null && Objects.equals(getId(), tableBench.getId());
     }
 
     @Override

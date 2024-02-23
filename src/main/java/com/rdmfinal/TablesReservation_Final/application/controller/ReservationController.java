@@ -26,4 +26,23 @@ public class ReservationController {
         Optional<Reservation> reservation = this.reservationService.findById(id);
         return reservation.isPresent() ? ResponseEntity.ok((Reservation)reservation.get()) : ResponseEntity.notFound().build();
     }
+
+    @PostMapping
+    public ResponseEntity<?> registerReserva(@RequestBody ReservationDTO reservationDTO){
+        reservationService.createReserva(reservationDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findReservaById(@PathVariable Long id) throws DemoSecurityException {
+        ReservationDTO reservationDTO = reservationService.findReservaById(id);
+        return new ResponseEntity<>(reservationDTO, HttpStatus.FOUND);
+    }
+
+    @PostMapping("/{id}")
+    public ResponseEntity<?> deleteReservaByID(@PathVariable Long id) throws DemoSecurityException {
+        reservationService.deleteReservaByID(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

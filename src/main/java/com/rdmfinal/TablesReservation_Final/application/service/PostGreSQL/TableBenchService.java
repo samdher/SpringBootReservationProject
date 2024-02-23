@@ -16,6 +16,7 @@ import java.util.Optional;
 
 @Service
 public class TableBenchService implements GenericService<TableBench, Long> {
+    @Autowired
     private final TableBenchRepository tableBenchRepository;
 
     public TableBenchService(@Autowired TableBenchRepository tableBenchRepository) {
@@ -40,6 +41,39 @@ public class TableBenchService implements GenericService<TableBench, Long> {
 
     public void delete(TableBench entity) {
         this.tableBenchRepository.delete(entity);
+    }
+
+    public void createMesa(TableBenchDTO tableBenchDTO){
+        TableBench tableBench = TableBench.builder()
+                .noPersons(tableBenchDTO.noPersons())
+                .ubication(tableBenchDTO.ubication())
+                .isReserved(tableBenchDTO.isReserved())
+                .build();
+
+        System.out.println("Se ha ingresado TableBench correctamente: "+ tableBench);
+        // llamar a la interface del repository save
+        tableBenchRepository.save(tableBench);
+    }
+
+    public TableBenchDTO findMesaById(Long id) throws DemoSecurityException {
+        TableBench tableBench = tableBenchRepository.findById(id)
+                .orElseThrow(
+                        () -> new DemoSecurityException(EMessage.DATA_NOT_FOUND)
+                );
+        return new TableBenchDTO(
+                tableBench.getId(),
+                tableBench.getNoPersons(),
+                tableBench.getUbication(),
+                tableBench.isReserved()
+        );
+    }
+
+    public void deleteMesaByID(Long id) throws DemoSecurityException {
+        TableBench tableBench = tableBenchRepository.findById(id)
+                .orElseThrow(
+                        () -> new DemoSecurityException(EMessage.DATA_NOT_FOUND)
+                );
+        tableBenchRepository.deleteById(id);
     }
 
 }

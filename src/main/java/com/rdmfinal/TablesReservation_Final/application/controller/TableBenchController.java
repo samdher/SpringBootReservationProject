@@ -23,10 +23,21 @@ public class TableBenchController {
         this.tableBenchService = tableBenchService;
     }
 
-    @RequestMapping({"/{id}"})
-    public ResponseEntity<TableBench> findUserById(@PathVariable Long id) {
-        Optional<TableBench> tableBench = this.tableBenchService.findById(id);
-        return tableBench.isPresent() ? ResponseEntity.ok((TableBench)tableBench.get()) : ResponseEntity.notFound().build();
+   @PostMapping
+    public ResponseEntity<?> registerMesa(@RequestBody TableBenchDTO tableBenchDTO){
+        tableBenchService.createMesa(tableBenchDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findMesaById(@PathVariable Long id) throws DemoSecurityException {
+        TableBenchDTO tableBenchDTO = tableBenchService.findMesaById(id);
+        return new ResponseEntity<>(tableBenchDTO, HttpStatus.FOUND);
+    }
+
+    @PostMapping("/{id}")
+    public ResponseEntity<?> deleteMesaByID(@PathVariable Long id) throws DemoSecurityException {
+        tableBenchService.deleteMesaByID(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

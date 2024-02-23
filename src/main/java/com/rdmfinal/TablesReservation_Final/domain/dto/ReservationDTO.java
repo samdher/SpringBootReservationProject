@@ -7,10 +7,10 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record ReservationDTO(
     long id,
-    long idMesa,
-    String cliente,
-    Date fechaReserva,
-    int duracion,
-    String estado
+    long idTableBench,
+    String client,
+    Date dateReservation,
+    int duration,
+    String status
 ) {
 }

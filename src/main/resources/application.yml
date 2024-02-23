@@ -21,7 +21,6 @@ spring:
   data:
     mongodb:
       url: mongodb+srv://samdher:Samuel1909@reservationfinal.1lszqko.mongodb.net/Reservation?retryWrites=true&w=majority
-
 application:
   security:
     jwt:
