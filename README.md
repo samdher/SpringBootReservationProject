@@ -32,7 +32,7 @@
   <h4>Creación de Token para auntenticación</h4>
   En este caso se necesita usar el método para registrar un usuario dentro de la base de datos. <br>
   http://localhost:8080/api/v1/auth/register <br>
-  con esto en el body <br>  
+  con esto en el body <br>  <br>
   
     {
       "firstName":"test",
@@ -43,7 +43,7 @@
   <br> <br> 
 Seguido de esto se procede a iniciar sesión con la siguiente URL: <br>
 http://localhost:8080/api/v1/auth/login <br>
-con esto en el body: <br>
+con esto en el body: <br><br>
 
     {
     "email":"ejemplotest01@gmail.com",
@@ -59,13 +59,13 @@ Ya con el token que genera usted esta listo para hacer uso de los distintos mét
     Para crear una mesa es necesario utilizar este método en Postman: <br>
     http://localhost:8080/api/v1/tablebench <br>
     Metodo: POST <br>
-    Con esto en el body: <br>
+    Con esto en el body: <br><br>
         
     {
       "noPersons":5,
       "ubication":"pergola",
       "isReserved":false
-    }<br>
+    }
     
   Teniendo siempre un token tipo bearer.<br><br>
 
@@ -73,14 +73,14 @@ Ya con el token que genera usted esta listo para hacer uso de los distintos mét
     Para consultar una mesa es necesario utilizar este método en Postman: <br>
     <br>http://localhost:8080/api/v1/tablebench/id <br>
     Metodo: GET <br>
-    En donde id es el número de mesa que se desea consultar teniendo como resultado el siguiente: <br>
+    En donde id es el número de mesa que se desea consultar teniendo como resultado el siguiente: <br><br>
     
     {
         "id": 2,
         "noPersons": 5,
         "ubication": "pergola",
         "isReserved": false
-    }<br>
+    }
   Teniendo siempre un token tipo bearer.<br><br>
   
 <li>Eliminar</li>
@@ -98,7 +98,7 @@ Ya con el token que genera usted esta listo para hacer uso de los distintos mét
     Para crear una reserva es necesario utilizar este método en Postman: <br>
     <br> http://localhost:8080/api/v1/reservation <br>
     Metodo: POST <br>
-        Con esto en el body: <br> 
+        Con esto en el body: <br> <br>
 
     {
         "idTableBench":2,
@@ -106,7 +106,7 @@ Ya con el token que genera usted esta listo para hacer uso de los distintos mét
         "dateReservation": "2024-02-02",
         "duration":2,
         "status": "activo"
-    }<br>
+    }
     
   Teniendo siempre un token tipo bearer, <b>Cabe mencionar que si la Mesa no esta disponible la reserva no procede a ser guardada o si la mesa no existe no se hace la reserva.</b> <br><br>
 
@@ -114,7 +114,7 @@ Ya con el token que genera usted esta listo para hacer uso de los distintos mét
     Para consultar una reserva es necesario utilizar este método en Postman: <br>
     <br>http://localhost:8080/api/v1/reservation/id<br>
     Metodo: GET <br>
-    En donde id es el número de mesa que se desea consultar teniendo como resultado el siguiente: <br>    
+    En donde id es el número de mesa que se desea consultar teniendo como resultado el siguiente: <br> <br>   
     
     {
         "id": 2,
@@ -123,7 +123,7 @@ Ya con el token que genera usted esta listo para hacer uso de los distintos mét
         "dateReservation": "2024-02-02T00:00:00.000+00:00",
         "duration": 2,
         "status": "activo"
-    }<br>
+    }
   
   Teniendo siempre un token tipo bearer.<br><br>
 
