@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record TableBenchDTO(
-    long id,
+    Long id,
     int noPersons,
     String ubication,
     boolean isReserved
