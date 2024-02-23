@@ -1,3 +1,7 @@
+/*
+Esta clase sirve para poder ingresar un nuevo registro de usuario validando siempre que el usuario no exista
+e insertando y generando su token para seguir con los pasos dentro de la aplicación.
+*/
 package com.rdmfinal.TablesReservation_Final.application.controller;
 
 import com.rdmfinal.TablesReservation_Final.application.exception.DemoSecurityException;

@@ -1,3 +1,14 @@
+/*
+Esta clase sive para poder realizar mantenimiento a nuestras mesas según la mesa que se necesite gestionar.
+Dentro de las operaciones que se pueden realizar están la de:
+    - Crear una mesa
+    - Consultar una mesa
+    - Eliminar una mesa
+
+Para los cuales se ejecutan instrucciones según sea el caso de método get para traer datos,
+y post para mandar datos a la BD
+*/
+
 package com.rdmfinal.TablesReservation_Final.application.controller;
 
 import com.rdmfinal.TablesReservation_Final.application.exception.DemoSecurityException;
@@ -25,12 +36,14 @@ public class TableBenchController {
 
    @PostMapping
     public ResponseEntity<?> registerMesa(@RequestBody TableBenchDTO tableBenchDTO){
+        //Para crear una mesa
         tableBenchService.createMesa(tableBenchDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> findMesaById(@PathVariable Long id) throws DemoSecurityException {
+        //Para consultar una mesa
         TableBenchDTO tableBenchDTO = tableBenchService.findMesaById(id);
         return new ResponseEntity<>(tableBenchDTO, HttpStatus.FOUND);
     }

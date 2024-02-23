@@ -1,3 +1,14 @@
+/*
+Esta clase sive para poder realizar mantenimiento a nuestras reservas según la mesa que se necesite gestionar.
+Dentro de las operaciones que se pueden realizar están la de:
+    - Crear una reserva, cabe mencionar que si la mesa está ocupada no deja asignar reservación
+    - Consultar una reserva
+    - Eliminar una reserva
+
+Para los cuales se ejecutan instrucciones según sea el caso de método get para traer datos,
+y post para mandar datos a la BD
+*/
+
 package com.rdmfinal.TablesReservation_Final.application.controller;
 
 import com.rdmfinal.TablesReservation_Final.application.exception.DemoSecurityException;
@@ -28,18 +39,19 @@ public class ReservationController {
     }
 
     @PostMapping
-    public ResponseEntity<?> registerReserva(@RequestBody ReservationDTO reservationDTO){
+    public ResponseEntity<?> registerReserva(@RequestBody ReservationDTO reservationDTO)
+    { // Para realizar una reserva
         reservationService.createReserva(reservationDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") //Para encontrar una reserva
     public ResponseEntity<?> findReservaById(@PathVariable Long id) throws DemoSecurityException {
         ReservationDTO reservationDTO = reservationService.findReservaById(id);
         return new ResponseEntity<>(reservationDTO, HttpStatus.FOUND);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/{id}") //Para eliminar Rerservas
     public ResponseEntity<?> deleteReservaByID(@PathVariable Long id) throws DemoSecurityException {
         reservationService.deleteReservaByID(id);
         return new ResponseEntity<>(HttpStatus.OK);
