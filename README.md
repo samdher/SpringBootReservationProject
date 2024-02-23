@@ -31,7 +31,7 @@
 
   <h4>Creación de Token para auntenticación</h4>
   En este caso se necesita usar el método para registrar un usuario dentro de la base de datos. <br>
-  http://localhost:8080/api/v1/auth/register <br>
+      http://localhost:8080/api/v1/auth/register <br>
   con esto en el body <br>  <br>
   
     {
@@ -42,7 +42,7 @@
     } 
   <br> <br> 
 Seguido de esto se procede a iniciar sesión con la siguiente URL: <br>
-http://localhost:8080/api/v1/auth/login <br>
+    http://localhost:8080/api/v1/auth/login <br>
 con esto en el body: <br><br>
 
     {
@@ -57,7 +57,7 @@ Ya con el token que genera usted esta listo para hacer uso de los distintos mét
   <h4>Mantenimiento de Mesas</h4> <br>
   <li>Creación</li>
     Para crear una mesa es necesario utilizar este método en Postman: <br>
-    http://localhost:8080/api/v1/tablebench <br>
+        http://localhost:8080/api/v1/tablebench <br>
     Metodo: POST <br>
     Con esto en el body: <br><br>
         
@@ -71,7 +71,7 @@ Ya con el token que genera usted esta listo para hacer uso de los distintos mét
 
 <li>Consulta</li>
     Para consultar una mesa es necesario utilizar este método en Postman: <br>
-    <br>http://localhost:8080/api/v1/tablebench/id <br>
+    <br>  http://localhost:8080/api/v1/tablebench/id <br>
     Metodo: GET <br>
     En donde id es el número de mesa que se desea consultar teniendo como resultado el siguiente: <br><br>
     
@@ -85,7 +85,7 @@ Ya con el token que genera usted esta listo para hacer uso de los distintos mét
   
 <li>Eliminar</li>
     Para eliminar una mesa es necesario utilizar este método en Postman: <br>
-    <br>http://localhost:8080/api/v1/tablebench/id <br>
+    <br>    http://localhost:8080/api/v1/tablebench/id <br>
     Metodo: POST <br>
     Resultado: Ok cuando la mesa ha sido elminiada, o si el registro no fue encontrado muestra un mensaje de error. <br>
   Teniendo siempre un token tipo bearer.<br><br>
@@ -96,7 +96,7 @@ Ya con el token que genera usted esta listo para hacer uso de los distintos mét
   <h4>Mantenimiento de Reservas</h4> <br>
   <li>Creación</li>
     Para crear una reserva es necesario utilizar este método en Postman: <br>
-    <br> http://localhost:8080/api/v1/reservation <br>
+    <br>   http://localhost:8080/api/v1/reservation <br>
     Metodo: POST <br>
         Con esto en el body: <br> <br>
 
@@ -112,7 +112,7 @@ Ya con el token que genera usted esta listo para hacer uso de los distintos mét
 
 <li>Consulta</li>
     Para consultar una reserva es necesario utilizar este método en Postman: <br>
-    <br>http://localhost:8080/api/v1/reservation/id<br>
+    <br>    http://localhost:8080/api/v1/reservation/id<br>
     Metodo: GET <br>
     En donde id es el número de mesa que se desea consultar teniendo como resultado el siguiente: <br> <br>   
     
@@ -129,7 +129,7 @@ Ya con el token que genera usted esta listo para hacer uso de los distintos mét
 
   <li>Eliminar</li>
     Para eliminar una reserva es necesario utilizar este método en Postman: <br>
-    <br>http://localhost:8080/api/v1/reservation/id <br>
+    <br>    http://localhost:8080/api/v1/reservation/id <br>
     Metodo: POST <br>
     Resultado: Ok cuando la reserva ha sido elminiada, o si el registro no fue encontrado muestra un mensaje de error. <br>
   Teniendo siempre un token tipo bearer.<br><br>
