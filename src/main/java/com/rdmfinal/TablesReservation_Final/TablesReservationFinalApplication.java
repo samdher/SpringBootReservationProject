@@ -16,5 +16,29 @@ public class TablesReservationFinalApplication {
 	public static void main(String[] args)
 	{
 		SpringApplication.run(TablesReservationFinalApplication.class, args);
+
+		/*GenericService genericService = (GenericService)applicationContext.getBean(GenericService.class);
+		List all;
+		Iterator var4;
+		if (genericService instanceof TableBenchServiceMongoDB) {
+			genericService.save(new TableBenchMongoDB(5,"Jardin",false));
+			all = genericService.findAll();
+			var4 = all.iterator();
+
+			while(var4.hasNext()) {
+				TableBenchMongoDB tableBenchMongoDB = (TableBenchMongoDB)var4.next();
+				System.out.println(tableBenchMongoDB);
+			}
+		} else {
+			genericService.save(new TableBench(10,"azotea",false));
+			all = genericService.findAll();
+			var4 = all.iterator();
+
+			while(var4.hasNext()) {
+				TableBench tableBench = (TableBench)var4.next();
+				System.out.println(tableBench);
+			}
+		}*/
+
 	}
 }

@@ -11,6 +11,7 @@ import com.rdmfinal.TablesReservation_Final.domain.entity.PostGreSQL.TableBench;
 import com.rdmfinal.TablesReservation_Final.domain.repository.MongoDB.ReservationRepositoryMongoDB;
 import com.rdmfinal.TablesReservation_Final.domain.repository.MongoDB.TableBenchRepositoryMongoDB;
 import com.rdmfinal.TablesReservation_Final.domain.repository.PostGreSQL.TableBenchRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
